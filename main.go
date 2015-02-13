@@ -45,25 +45,25 @@ type AddProfile struct {
 	Add        map[string]string `json:"$add"`
 }
 type UnionProfile struct {
-	Token      string            `json:"$token"`
-	DistinctId string            `json:"$distinct_id"`
-	Ip         string            `json:"$ip,omitempty"`
-	Time       int               `json:"$time,omitempty"`
-	IgnoreTime bool              `json:"$ignore_time,omitempty"`
+	Token      string              `json:"$token"`
+	DistinctId string              `json:"$distinct_id"`
+	Ip         string              `json:"$ip,omitempty"`
+	Time       int                 `json:"$time,omitempty"`
+	IgnoreTime bool                `json:"$ignore_time,omitempty"`
 	Union      map[string][]string `json:"$union"`
 }
 type UnsetProfile struct {
-	Token      string            `json:"$token"`
-	DistinctId string            `json:"$distinct_id"`
-	Ip         string            `json:"$ip,omitempty"`
-	Time       int               `json:"$time,omitempty"`
-	IgnoreTime bool              `json:"$ignore_time,omitempty"`
+	Token      string   `json:"$token"`
+	DistinctId string   `json:"$distinct_id"`
+	Ip         string   `json:"$ip,omitempty"`
+	Time       int      `json:"$time,omitempty"`
+	IgnoreTime bool     `json:"$ignore_time,omitempty"`
 	Unset      []string `json:"$unset"`
 }
 type DeleteProfile struct {
 	Token      string `json:"$token"`
 	DistinctId string `json:"$distinct_id"`
-	Delete string `json:"$delete"`
+	Delete     string `json:"$delete"`
 }
 
 type Event struct {
@@ -157,7 +157,7 @@ func (m *Mixpanel) setOnce(profile *Profile) error {
 		Ip:         profile.Ip,
 		Time:       profile.Time,
 		IgnoreTime: profile.IgnoreTime,
-		SetOnce:      profile.Values,
+		SetOnce:    profile.Values,
 	}
 	data, err := marshal(set)
 	if err != nil {
@@ -176,7 +176,7 @@ func (m *Mixpanel) add(profile *Profile) error {
 		Ip:         profile.Ip,
 		Time:       profile.Time,
 		IgnoreTime: profile.IgnoreTime,
-		Add:      profile.Values,
+		Add:        profile.Values,
 	}
 	data, err := marshal(set)
 	if err != nil {
@@ -211,7 +211,7 @@ func (m *Mixpanel) delete(profile *Profile) error {
 	set := DeleteProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
-		Delete: "",
+		Delete:     "",
 	}
 	data, err := marshal(set)
 	if err != nil {
