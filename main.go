@@ -15,7 +15,6 @@ type Profile struct {
 	Ip         string
 	Time       int
 	IgnoreTime bool
-	Operation  string
 	Values     map[string]string
 	Unset      []string
 	Union      map[string][]string
