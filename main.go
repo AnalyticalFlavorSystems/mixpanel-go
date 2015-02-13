@@ -78,7 +78,7 @@ func New(token string) *Mixpanel {
 	return &Mixpanel{Token: token}
 }
 
-func (m *Mixpanel) track(event *Event) error {
+func (m *Mixpanel) Track(event *Event) error {
 	if _, ok := event.Properties["token"]; ok {
 		return errors.New("You can't put token as a properties")
 	}
@@ -112,7 +112,7 @@ func request(reqType string, data string) error {
 	return nil
 
 }
-func (m *Mixpanel) set(profile *Profile) error {
+func (m *Mixpanel) Set(profile *Profile) error {
 	set := SetProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
@@ -131,7 +131,7 @@ func (m *Mixpanel) set(profile *Profile) error {
 	}
 	return nil
 }
-func (m *Mixpanel) unset(profile *Profile) error {
+func (m *Mixpanel) Unset(profile *Profile) error {
 	set := UnsetProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
@@ -150,7 +150,7 @@ func (m *Mixpanel) unset(profile *Profile) error {
 	}
 	return nil
 }
-func (m *Mixpanel) setOnce(profile *Profile) error {
+func (m *Mixpanel) SetOnce(profile *Profile) error {
 	set := SetOnceProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
@@ -169,7 +169,7 @@ func (m *Mixpanel) setOnce(profile *Profile) error {
 	}
 	return nil
 }
-func (m *Mixpanel) add(profile *Profile) error {
+func (m *Mixpanel) Add(profile *Profile) error {
 	set := AddProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
@@ -188,7 +188,7 @@ func (m *Mixpanel) add(profile *Profile) error {
 	}
 	return nil
 }
-func (m *Mixpanel) union(profile *Profile) error {
+func (m *Mixpanel) Union(profile *Profile) error {
 	set := UnionProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
@@ -207,7 +207,7 @@ func (m *Mixpanel) union(profile *Profile) error {
 	}
 	return nil
 }
-func (m *Mixpanel) delete(profile *Profile) error {
+func (m *Mixpanel) Delete(profile *Profile) error {
 	set := DeleteProfile{
 		Token:      m.Token,
 		DistinctId: profile.DistinctId,
